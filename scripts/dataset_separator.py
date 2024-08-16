@@ -61,7 +61,6 @@ def process_dataset(input_dir, person_output_dir, ppe_output_dir):
             height, width = img.shape[:2]
             boxes = read_yolo_labels(label_path, width, height)
             
-            # Process for person dataset
             person_boxes = [box for box in boxes if classes[box[0]] == "person"]
             if person_boxes:
                 person_img_path = os.path.join(person_output_dir, "images", img_file)
@@ -69,7 +68,6 @@ def process_dataset(input_dir, person_output_dir, ppe_output_dir):
                 cv2.imwrite(person_img_path, img)
                 write_yolo_label(person_label_path, [(0, box[1]) for box in person_boxes], width, height)
             
-            # Process for PPE dataset
             for i, (class_id, (x1, y1, x2, y2)) in enumerate(person_boxes):
                 person_crop = img[y1:y2, x1:x2]
                 crop_height, crop_width = person_crop.shape[:2]
@@ -79,7 +77,7 @@ def process_dataset(input_dir, person_output_dir, ppe_output_dir):
                     if classes[box[0]] != "person":
                         ppe_x1, ppe_y1, ppe_x2, ppe_y2 = box[1]
                         if calculate_iou((x1, y1, x2, y2), (ppe_x1, ppe_y1, ppe_x2, ppe_y2)) > 0:
-                            # Calculate the coordinates of the PPE item relative to the person crop
+                            # coordinates of PPE item relative to the person crop
                             crop_ppe_x1 = max(0, ppe_x1 - x1)
                             crop_ppe_y1 = max(0, ppe_y1 - y1)
                             crop_ppe_x2 = min(crop_width, ppe_x2 - x1)

@@ -55,8 +55,7 @@ if __name__ == '__main__':
     parser.add_argument('output_dir', type=str, help='Path to the output directory for YOLO v8 format files')
     args = parser.parse_args()
 
-    # Define your classes here
-    classes = ["person", "hard-hat", "gloves", "mask", "glasses", "boots", "vest", "ppe-suit", "ear-protector", "safety-harness"]  # Replace with your actual classes
+    classes = ["person", "hard-hat", "gloves", "mask", "glasses", "boots", "vest", "ppe-suit", "ear-protector", "safety-harness"]
 
     convert_pascalvoc_to_yolo(args.input_dir, args.output_dir)
     print(f"Conversion completed. YOLO format files saved in {args.output_dir}")
