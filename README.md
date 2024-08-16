@@ -3,6 +3,8 @@
 ## Introduction
 The aim of this was to build a system to ensure the safety of the workers of any construction site or a factory by checking whether the workers are equipped with proper PPE (personal protective equipment) or not.
 
+Detailed document [here](https://docs.google.com/document/d/1OgHGKbq-g3xVSKZ1191oWQBTiWhP-ADwTxhfVMx-X_s/edit?usp=sharing).
+
 ## Setup
 Clone the repository
 ```
